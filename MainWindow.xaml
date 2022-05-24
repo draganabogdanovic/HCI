@@ -1,0 +1,252 @@
+﻿<Window x:Class="Aplikacija.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:local="clr-namespace:Aplikacija"
+        mc:Ignorable="d"
+        Title="Mapa događaja"
+         Height="750" Width="1350"
+        ResizeMode="NoResize"
+        Background="White"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="28"/>
+            <RowDefinition Height="58.4"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="0*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Margin="0,0,0,-0.2"  Grid.RowSpan="3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="72*"/>
+                <RowDefinition Height="649*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="260.8"/>
+                <ColumnDefinition Width="0*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+
+
+            <Canvas Grid.Column="0" Margin="7,20,1002,261.8" Grid.ColumnSpan="3" Grid.RowSpan="2">
+                <Canvas.Background>
+                    <SolidColorBrush Color="White"></SolidColorBrush>
+                </Canvas.Background>
+                <DataGrid PreviewMouseLeftButtonDown="TabelaDogadjaja_PreviewMouseLeftButtonDown" x:Name="dgDogadjaji"  BorderThickness="2.6"  ItemsSource="{Binding Path=Dogadjaji}" AutoGenerateColumns="False"  Height="178" Width="243" SelectionChanged="TabelaDogadjaja_SelectionChanged" Canvas.Top="125">
+                    <DataGrid.Columns>
+
+                        <DataGridTemplateColumn Header="Oznaka" IsReadOnly="True" Width="60">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock TextWrapping="Wrap" TextAlignment="Left" MaxWidth="50" Width="50" Text="{Binding Oznaka}"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <DataGridTemplateColumn Header="Naziv" IsReadOnly="True" Width="60">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock TextWrapping="Wrap" TextAlignment="Left" MaxWidth="50" Width="50" Text="{Binding Naziv}"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <DataGridTemplateColumn Header="Ikonica" Width="60" IsReadOnly="True">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Image Width="32" Height="32" Source="{Binding Ikonica}"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <DataGridTemplateColumn Header="Tip" Width="70">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock TextWrapping="Wrap" TextAlignment="Left" MaxWidth="115" Width="115" Text="{Binding Tip.Naziv}"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+
+                        <DataGridTemplateColumn Header="Datum" Width="70">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock TextWrapping="Wrap" TextAlignment="Left" MaxWidth="115" Width="115"  Text="{Binding Datum}"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Header="Istorija održavanja" Width="70">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock TextWrapping="Wrap" TextAlignment="Left" MaxWidth="115" Width="115"  Text="{Binding Istorija}"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Header="Mesto" Width="80">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock TextWrapping="Wrap" TextAlignment="Left" MaxWidth="115" Width="115"  Text="{Binding Mesto}"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Header="Cena održavanja" Width="80">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock TextWrapping="Wrap" TextAlignment="Left" MaxWidth="115" Width="115"  Text="{Binding CenaOdrzavanja}"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Header="Humanitarno" Width="80">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock TextWrapping="Wrap" TextAlignment="Left" MaxWidth="115" Width="115"  Text="{Binding Humanitarno}"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <Image x:Name="prikaz" Height="103" Width="106" Canvas.Left="62" Canvas.Top="336" MouseMove="Image_MouseMove" PreviewMouseLeftButtonDown="Image_PreviewMouseLeftButtonDown">
+
+                </Image>
+
+            </Canvas>
+
+            <GridSplitter Height="381" VerticalAlignment="Top" Width="5" Margin="0,20,4.8,0" Background="white" Grid.RowSpan="2"/>
+
+            <Canvas Margin="3.2,72,2,-0.2" Grid.Column="2" Background="White" x:Name="mapa" AllowDrop="True" DragEnter="Mapa_DragEnter" Drop="Mapa_Drop" Grid.Row="1">
+                <Image Source="images\svet1.png" Width="1042" Height="570" Canvas.Left="10" Canvas.Top="10"/>
+            </Canvas>
+
+
+            <Image Source="images\logo.png" Margin="0,0,1083,624.8" Grid.ColumnSpan="3" Grid.RowSpan="2" />
+
+            <Button  x:Name="DodajTipButton" ToolTip="Otvara prozor u kome se dodaje nova etiketa" Margin="350.2,23,563,1" FontSize="12" Click="DodajTip_Click" BorderThickness="0"  Background="White"  Foreground="#027659" FontWeight="DemiBold" Grid.Column="2" >
+                <TextBlock HorizontalAlignment="Center"  FontSize="16"  Margin="2 2 2 2" ><Run Text="Dodavanje tipa"/></TextBlock>
+            </Button>
+
+            <Button x:Name="dodajDogadjajButton" ToolTip="Otvara prozor u kome se dodaje novi događaj" Margin="0.2,23,913,1" BorderThickness="0" FontSize="12" Click="DodajDogadjaj_Click" Background="White"  Foreground="#027659" FontWeight="DemiBold" Grid.Column="2">
+                <TextBlock HorizontalAlignment="Center"   FontSize="16"  Width="180"><Run Text="   Dodavanje dogadjaja"/></TextBlock>
+            </Button>
+
+            <Button  x:Name="dodajEtiketuButton" ToolTip="Otvara prozor u kome se dodaje nova etiketa" Margin="175.2,23,738,1"   Background="White"  Foreground="#027659" FontWeight="DemiBold" BorderThickness="0"  FontSize="12" Click="DodajEtiketuButton_Click" Grid.Column="2">
+                <TextBlock HorizontalAlignment="Center" FontSize="16"  Margin="2 2 2 2"  Height="25"  RenderTransformOrigin="0.503,1.03" Text="Dodavanje etikete"/>
+            </Button>
+
+            <StackPanel Orientation="Horizontal" Margin="0,280,1.8,347.8" Grid.Row="1" />
+            <StackPanel Orientation="Horizontal" Margin="0,280,1.8,347.8" Grid.Row="1" />
+
+            <Button Margin="525.2,23,388,1"  Background="White"  Foreground="#027659" FontWeight="DemiBold" BorderThickness="0"  ToolTip="Otvara prozor u kom se mogu videti svi događaji, kao i vršiti njihova izmena i brisanje" RenderTransformOrigin="0.79,0.396" Click="TabelaDogadjaja_Click" Grid.Column="2">
+                <TextBlock HorizontalAlignment="Center" Text="Tabela događaja " FontSize="16" Width="121" Grid.RowSpan="2"/>
+            </Button>
+
+            <Button Margin="875.2,23,38,1"  Background="White"  Foreground="#027659" FontWeight="DemiBold" BorderThickness="0"  ToolTip="Otvara prozor u kom se mogu videti sve etikete, kao i vršiti njihova izmena i brisanje" RenderTransformOrigin="0.79,0.396" Click="TabelaEtiketa_Click" Grid.Column="2">
+                <TextBlock HorizontalAlignment="Center" Text="Tabela etiketa "  FontSize="16" Width="100" />
+            </Button>
+
+            <Button Margin="700.2,23,213,1"  Background="White"  Foreground="#027659" FontWeight="DemiBold" BorderThickness="0"  ToolTip="Otvara prozor u kom se mogu videti sve tipove, kao i vršiti njihova izmena i brisanje" RenderTransformOrigin="0.79,0.396" Click="TabelaTipova_Click" Grid.Column="2">
+                <TextBlock HorizontalAlignment="Center" Text="Tabela tipova "  FontSize="16" Width="100"/>
+            </Button>
+
+            <Button Width="47" Height="46" VerticalAlignment="top" HorizontalAlignment="Right" Margin="0,21,38,0" Click="ShowTutMenu" Background="White" BorderThickness="0"
+                     RenderTransformOrigin="35.893,3.537" Grid.Column="2" Grid.Row="1">
+                <Image Source="images/helpp.png" Height="35" Width="35" ></Image>
+            </Button>
+            <Menu  Name="tutorialMenu"  Visibility="Hidden"  HorizontalAlignment="Right" VerticalAlignment="Top" MouseLeave="ShowTutMenu" FontSize="16" Grid.ColumnSpan="3"  Grid.RowSpan="2" Height="260" Width="170">
+                <Menu.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel Orientation="Vertical"/>
+                    </ItemsPanelTemplate>
+                </Menu.ItemsPanel>
+                <MenuItem Click="MenuItem_Click">
+                    <MenuItem.Header>
+                        <DockPanel>
+                            <Label>Help</Label>
+                        </DockPanel>
+                    </MenuItem.Header>
+                </MenuItem>
+                <MenuItem >
+                    <MenuItem.Header>
+                        <Button Click="Tutorial_Button_Click"
+                            HorizontalContentAlignment="Left"
+                            BorderThickness="0"
+                            Name="dodavanjeDogadjaja">Dodavanje događaja</Button>
+                    </MenuItem.Header>
+                </MenuItem>
+                <MenuItem >
+                    <MenuItem.Header>
+                        <Button Click="Tutorial_Button_Click"
+                            HorizontalContentAlignment="Left"
+                            BorderThickness="0"
+                            Name="dodavanjeTipa">Dodavanje tipa</Button>
+                    </MenuItem.Header>
+                </MenuItem>
+                <MenuItem >
+                    <MenuItem.Header>
+                        <Button Click="Tutorial_Button_Click"
+                            HorizontalContentAlignment="Left"
+                            BorderThickness="0"
+                            Name="dodavanjeEtikete">Dodavanje etikete</Button>
+                    </MenuItem.Header>
+                </MenuItem>
+                <MenuItem >
+                    <MenuItem.Header>
+                        <Button Click="Tutorial_Button_Click"
+                            HorizontalContentAlignment="Left"
+                            BorderThickness="0"
+                            Name="prikazDogadjaja">Prikaz događaja</Button>
+                    </MenuItem.Header>
+                </MenuItem>
+                <MenuItem >
+                    <MenuItem.Header>
+                        <Button Click="Tutorial_Button_Click"
+                            HorizontalContentAlignment="Left"
+                            BorderThickness="0"
+                            Name="prikazTipova">Prikaz tipova</Button>
+                    </MenuItem.Header>
+                </MenuItem>
+                <MenuItem >
+                    <MenuItem.Header>
+                        <Button Click="Tutorial_Button_Click"
+                            HorizontalContentAlignment="Left"
+                            BorderThickness="0"
+                            Name="prikazEtiketa">Prikaz etiketa</Button>
+                    </MenuItem.Header>
+                </MenuItem>
+                <MenuItem >
+                    <MenuItem.Header>
+                        <Button Click="Tutorial_Button_Click"
+                            HorizontalContentAlignment="Left"
+                            BorderThickness="0"
+                            Name="filtriranje">Filtriranje događaja</Button>
+                    </MenuItem.Header>
+                </MenuItem>
+                <MenuItem >
+                    <MenuItem.Header>
+                        <Button Click="Tutorial_Button_Click"
+                            HorizontalContentAlignment="Left"
+                            BorderThickness="0"
+                            Name="draganddrop">Drag and drop tehnika</Button>
+                    </MenuItem.Header>
+                </MenuItem>
+            </Menu>
+
+            <Label Content="Pretraga" Foreground="#027659" FontWeight="DemiBold" FontSize="16" Height="38" Margin="256,29,1002,0" VerticalAlignment="Top" Grid.ColumnSpan="3" Grid.Row="1"/>
+            <TextBox  ToolTip="Pretraga događaja po nazivu" BorderBrush="#027659" Name="searchBox" Margin="86.2,29,804,0" TextChanged="TextBox_TextChanged_1" Height="38" VerticalAlignment="Top" Grid.Column="2" Grid.Row="1" />
+
+            <Label Content="Filtriranje" Foreground="#027659" FontWeight="DemiBold" FontSize="16"  Height="29" VerticalAlignment="Top" Grid.Row="1" Margin="313.2,29,678,0" Grid.Column="2"/>
+            <TextBox  ToolTip="Filtriranje događaja po bilo kom elementu" BorderBrush="#027659" Name="filterBox" Margin="405.2,29,485,0" TextChanged="Filtriranje_Text" Height="38" VerticalAlignment="Top" Grid.Column="2" Grid.Row="1" />
+
+
+            <Button Content="Ukloni sa mape" HorizontalAlignment="Left"  Background="#027659" Foreground="Beige" FontSize ="16" Margin="75,484,0,0" VerticalAlignment="Top" Width="129" Height="37" Click="ObrisiSaMape_Click" Grid.Row="1"/>
+            <Button x:Name="cmdToggle" Content="Tastatura" Click="cmdToggle_Click" Background="#027659" Foreground="Beige" FontSize ="16" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="75,588,0,0" Padding="3" Height="37" Grid.Row="1" Width="129"/>
+
+        </Grid>
+    </Grid>
+</Window>

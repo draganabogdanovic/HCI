@@ -1,0 +1,90 @@
+﻿<Window x:Class="Aplikacija.Tabele.PregledVrste"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Aplikacija.Tabele"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="Tabela događaja" Height="450" Width="500">
+    <Grid Background="Beige">
+
+
+        <Label Content="Pretraži:" Foreground="#027659" FontSize="16" Margin="0,0,403.6,383" />
+        <TextBox x:Name="text_naziv" ToolTip="Pretraga događaja po nazivima" Margin="127,0,174.6,380" TextChanged="TextBox_TextChanged_1" RenderTransformOrigin="0.628,1.451" />
+
+
+
+        <DataGrid Background="Beige" x:Name="dgDogadjaj" Margin="0,72,-0.4,68" ItemsSource="{Binding Path=Dogadjaji}" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+
+                <DataGridTemplateColumn Header="Oznaka" IsReadOnly="True" Width="60">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock TextWrapping="Wrap" TextAlignment="Left" MaxWidth="50" Width="50" Text="{Binding Oznaka}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="60" Header="Naziv">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock TextWrapping="Wrap" TextAlignment="Left" MaxWidth="50" Width="50" Text="{Binding Naziv}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Ikonica" Width="60" IsReadOnly="True">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Width="32" Height="32" Source="{Binding Ikonica}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Header="Tip" Width="70">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock TextWrapping="Wrap" TextAlignment="Left" MaxWidth="115" Width="115" Text="{Binding Tip.Naziv}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+
+                <DataGridTemplateColumn Header="Datum" Width="70">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock TextWrapping="Wrap" TextAlignment="Left" MaxWidth="115" Width="115"  Text="{Binding Datum}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Mesto" Width="80">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock TextWrapping="Wrap" TextAlignment="Left" MaxWidth="115" Width="115"  Text="{Binding Mesto}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Humanitarno" Width="80">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock TextWrapping="Wrap" TextAlignment="Left" MaxWidth="115" Width="115"  Text="{Binding Humanitarno}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Button Margin="92,361,274.6,10" FontSize="18" Background="#027659" Foreground="Beige" x:Name="IzmeniBtn" Click="IzmeniBtn_Click" MouseEnter="hoverIzmeni" MouseLeave="otpustiIzmeni">
+            <StackPanel>
+                <TextBlock HorizontalAlignment="Center"><Run Text="Izmeni"/></TextBlock>
+            </StackPanel>
+        </Button>
+        <Button   FontSize="18" Background="#027659" Foreground="Beige" Margin="291,361,75.6,10" x:Name="ObrisiBtn" Click="ObrisiBtn_Click" MouseEnter="hoverObrisi" MouseLeave="otpustiObrisi">
+            <StackPanel>
+                <TextBlock HorizontalAlignment="Center" Height="23" Width="54"><Run Text="Obriši"/></TextBlock>
+            </StackPanel>
+        </Button>
+
+        <Button x:Name="cmdToggle" Content="Tastatura" Click="cmdToggle_Click" Background="#027659" Foreground="Beige"  Height="40" FontSize ="16" Margin="357,0,9.6,380" />
+
+    </Grid>
+</Window>
